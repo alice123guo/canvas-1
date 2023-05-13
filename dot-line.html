@@ -13,19 +13,30 @@
     <canvas id="canvas" width="100" height="100"></canvas>
 
     <script>
-      var canvas = document.getElementById("canvas"); //通过id找到canvas
+      let canvas = document.getElementById("canvas"); //通过id找到canvas
 
       canvas.width = document.documentElement.clientWidth;
       canvas.height = document.documentElement.clientHeight; //js获取屏幕文档的宽高并设置成canvas的宽高
 
-      var ctx = canvas.getContext("2d");
-
+      let ctx = canvas.getContext("2d");
       ctx.fillStyle = "blue";
 
+      let painting = false; //默认情况下不画线，当按下鼠标的时候开始画线
+      canvas.onmousedown = () => {
+        painting = true;
+      };
       canvas.onmousemove = (e) => {
-        console.log(e.clientX);
-        console.log(e.clientY);
-        ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10); //鼠标点击时的坐标及大小
+        if (painting === true) {
+          console.log(e.clientX);
+          console.log(e.clientY);
+          ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10); //鼠标点击时的坐标及大小
+        } else {
+          console.log("什么都不做");
+        }
+      };
+
+      canvas.onmouseup = () => {
+        painting = false;
       };
     </script>
   </body>
