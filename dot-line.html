@@ -10,7 +10,7 @@
   <body>
     <div id="canvas"></div>
     <script>
-      canvas.onclick = (e) => {
+      canvas.onmousemove = (e) => {
         console.log(e.clientX);
         console.log(e.clientY);
         let div = document.createElement("div"); //让文档创建一个标签/元素 （这就是 API）
