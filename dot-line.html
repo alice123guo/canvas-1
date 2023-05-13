@@ -19,7 +19,8 @@
       canvas.height = document.documentElement.clientHeight; //js获取屏幕文档的宽高并设置成canvas的宽高
 
       let ctx = canvas.getContext("2d");
-      ctx.fillStyle = "blue";
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "none";
 
       let painting = false; //默认情况下不画线，当按下鼠标的时候开始画线
       canvas.onmousedown = () => {
@@ -27,9 +28,11 @@
       };
       canvas.onmousemove = (e) => {
         if (painting === true) {
-          console.log(e.clientX);
-          console.log(e.clientY);
-          ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10); //鼠标点击时的坐标及大小
+          //画线有锯齿所以把方形的图案改成圆形的
+          ctx.beginPath();
+          ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.fill();
         } else {
           console.log("什么都不做");
         }
