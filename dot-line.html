@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>canvas画点画线</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="canvas"></div>
+    <script>
+      canvas.onclick = (e) => {
+        console.log(e.clientX);
+        console.log(e.clientY);
+        let div = document.createElement("div"); //让文档创建一个标签/元素 （这就是 API）
+
+        div.style.position = "absolute"; //让div出现在XY的位置上
+        div.style.top = e.clientY + "px";
+        div.style.left = e.clientX + "px";
+        div.style.background = "red";
+        div.style.width = "6px";
+        div.style.height = "6px";
+        canvas.appendChild(div); //上面默认div在内存里面，要变成在页面里面
+      };
+    </script>
+  </body>
 </html>
