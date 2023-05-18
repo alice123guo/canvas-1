@@ -22,6 +22,10 @@
       ctx.fillStyle = "black";
       ctx.strokeStyle = "none";
 
+      //画出来的线感觉不连续
+      ctx.lineWidth = 10;
+      ctx.lineCap = "round";
+
       let painting = false; //默认情况下不画线，当按下鼠标的时候开始画线
 
       //怎么样知道上次最后一个点，第一次按下的时候没有上一个点，所以直接从onmousemove开始计算，第一次的点就是刚刚down下的那个点
