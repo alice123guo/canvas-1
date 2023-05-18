@@ -23,24 +23,46 @@
       ctx.strokeStyle = "none";
 
       let painting = false; //默认情况下不画线，当按下鼠标的时候开始画线
-      canvas.onmousedown = () => {
-        painting = true;
-      };
-      canvas.onmousemove = (e) => {
-        if (painting === true) {
-          //画线有锯齿所以把方形的图案改成圆形的
+
+      //测试能否支持手机
+      var isTouchDevice = "ontouchstart" in document.documentElement;
+      console.log(isTouchDevice);
+
+      if (isTouchDevice) {
+        //监听手机触摸事件
+        canvas.ontouchmove = (e) => {
+          console.log(e.touches[0].clientX, e.touches[0].clientY);
           ctx.beginPath();
-          ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+          ctx.arc(
+            e.touches[0].clientX,
+            e.touches[0].clientY,
+            10,
+            0,
+            2 * Math.PI
+          );
           ctx.stroke();
           ctx.fill();
-        } else {
-          console.log("什么都不做");
-        }
-      };
+        };
+      } else {
+        canvas.onmousedown = () => {
+          painting = true;
+        };
+        canvas.onmousemove = (e) => {
+          if (painting === true) {
+            //画线有锯齿所以把方形的图案改成圆形的
+            ctx.beginPath();
+            ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fill();
+          } else {
+            console.log("鼠标移开什么都不做");
+          }
+        };
 
-      canvas.onmouseup = () => {
-        painting = false;
-      };
+        canvas.onmouseup = () => {
+          painting = false;
+        };
+      }
     </script>
   </body>
 </html>
