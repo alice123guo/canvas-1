@@ -31,7 +31,9 @@
       if (isTouchDevice) {
         //监听手机触摸事件
         canvas.ontouchmove = (e) => {
-          console.log(e.touches[0].clientX, e.touches[0].clientY);
+          let x = e.touches[0].clientX;
+          let y = e.touches[0].clientY;
+          console.log(x, y);
           ctx.beginPath();
           ctx.arc(
             e.touches[0].clientX,
